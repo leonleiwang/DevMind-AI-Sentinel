@@ -1,0 +1,33 @@
+# 环境配置（包含 API Key）
+.env
+
+# Python 缓存
+__pycache__/
+*.pyc
+
+# 数据库文件（SQLite）
+*.db
+
+# Chroma 向量库缓存
+chroma_db/
+
+# IDE 配置
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 系统文件
+Thumbs.db
+.DS_Store
+
+# 前端构建产物
+frontend/dist/
+frontend/node_modules/
+frontend/.vite/
+
+# 日志文件
+*.log
+
+# Docker 临时文件
+Dockerfile.*.bak
