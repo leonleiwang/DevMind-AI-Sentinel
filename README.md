@@ -1,6 +1,6 @@
 # DevMind AI Sentinel – 基于多智能体协作的智能运维平台
 
-> **一句话概述**：面向云原生微服务环境的智能 Agent 运维助手，以自然语言交互、多 Agent 协作和 MCP 标准协议，将故障定位时间从 20 分钟缩短至 3 分钟。
+> **一句话概述**：面向云原生微服务环境的智能 Agent 运维助手，以自然语言交互、基于 LangChain + LangGraph 的多 Agent 协作和 MCP 标准协议，将故障定位时间从 20 分钟缩短至 3 分钟。
 
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Python](https://img.shields.io/badge/python-3.11-blue)
@@ -14,6 +14,14 @@
 - **代码审查 Agent**：检测 MR 变更内容，识别安全漏洞、逻辑缺陷，自动发表行级评论  
 - **文档问答 Agent**：基于 RAG 技术搜索 Confluence 知识库，回答部署、故障 SOP、技术方案等问题  
 - **监控大盘**：实时展示 CPU、内存、请求延迟等核心指标，自动刷新  
+
+## 👤 作者
+
+[王磊]: https://github.com/leonleiwang – 求职 AI Agent / LLM大模型开发工程师 - Shanghai/Hangzhou/Nanjing/Suzhou/Beijing, China，欢迎联系 [leonleiwang@outlook.com]
+
+## 📄 License
+
+MIT
 
 ---
 
@@ -49,7 +57,7 @@
 - **后端**：FastAPI + SQLAlchemy + SQLite/MySQL + Redis
 - **AI 引擎**：LangChain + LangGraph + 通义千问 (Qwen) + DashScope Embeddings
 - **工具协议**：MCP (Model Context Protocol)，所有外部系统统一封装为 MCP Server
-- **向量检索**：Chroma 向量数据库 + 自研 DashScopeEmbeddings 适配
+- **向量检索**：Chroma 向量数据库 +  DashScopeEmbeddings 适配实现 RAG 语义搜索，极大提升了文档问答的专业度
 
 ## 📂 项目结构
 
@@ -125,17 +133,36 @@ docker-compose up -d --build
 | 文档问答 Agent 语义检索        | ![文档问答](docs/screenshots/doc_qa.png) |
 | 监控大盘实时刷新               | <img src="docs/screenshots/dashboard-1.png" width="45%" /> <img src="docs/screenshots/dashboard-2.png" width="45%" /> |
 
-## 🎯 简历亮点
+## 🎯 项目亮点
 
-- 前沿技术栈：LangGraph 多 Agent 编排、MCP 协议统一工具接口、RAG 向量检索、SSE 流式输出。
+- 前沿技术栈：LangChain、LangGraph 多 Agent 编排、MCP 协议统一工具接口、RAG 向量检索、SSE 流式输出。
 - 工业级工程能力：前后端分离、JWT 认证、Docker 部署、异步任务、打字机流式体验。
 - 真实业务场景：覆盖 SRE 故障排查、DevOps 代码审查、文档助手、监控大盘，完整运维闭环。
 - 模型适配：自定义 DashScopeEmbeddings 适配国产大模型，体现实际落地的工程化思维。
 
-## 📄 License
+## 🔭 已知权衡与未来规划
 
-MIT
+### 架构决策与当前限制
 
-## 👤 作者
+| 设计模块 | 当前实现 | 后续计划 |
+|----------|----------|----------|
+| `services/` 业务逻辑层 | 未独立建层，逻辑直接写在路由或 Agent 中 | 抽取 `user_service`、`chat_service` 等，进一步解耦 |
+| 异步任务队列（Celery） | 未引入，所有 Agent 调用同步完成 | 引入 Celery / Redis Queue 处理长耗时 Agent 任务 |
+| 数据库迁移 (Alembic) | 使用 `Base.metadata.create_all` 自动建表 | 添加 Alembic 管理 schema 版本，支持无缝升级 |
+| WebSocket 推送 | 监控大盘使用轮询，对话为 SSE 单向流 | 引入 WebSocket 实现前端实时通知与状态同步 |
+| 向量数据库 | 使用 Chroma（轻量本地库）替代最初计划的 Milvus | 数据量增大后可切换至 Milvus / Qdrant 等分布式方案 |
+| Agent 管理界面 (`agents.py`) | 未实现，Agent 配置硬编码 | 提供 Web UI 界面动态管理 Agent 配置与启停 |
+| 代码审查差异展示 | 纯文本展示代码变更 | 集成 `diff2html` 或 Monaco Editor 实现可视化差异对比 |
+| 监控图表组件 (`MonitoringChart.vue`) | 直接在页面内使用 ECharts 配置 | 封装为独立可复用组件，支持更多图表类型与主题切换 |
 
-[王磊]: https://github.com/leonleiwang – 求职 AI Agent / 大模型应用开发工程师，欢迎联系 [leonleiwang@outlook.com]
+### 未来功能规划
+
+- **多语言支持**：前端国际化，支持中英文切换  
+- **多租户隔离**：按团队/项目隔离 Agent 会话与监控数据  
+- **告警规则引擎**：用户可自定义 Prometheus 告警阈值与通知策略  
+- **Agent 编排拖拽界面**：提供低代码画布，灵活组合多个 Agent 的工作流  
+- **CI/CD 集成**：将代码审查 Agent 接入 GitHub/GitLab CI，自动评论 MR  
+- **日志与链路追踪**：集成 ELK / Jaeger，增强故障诊断的上下文信息  
+- **移动端适配**：提供移动端 PWA 版本，方便运维人员随身处理告警  
+
+我会持续迭代，欢迎 Star ⭐ & Watch 关注项目进展！
