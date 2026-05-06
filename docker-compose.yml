@@ -1,0 +1,24 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./devmind.db
+      - SECRET_KEY=change-me-for-production
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DASHSCOPE_API_KEY=${DASHSCOPE_API_KEY}
+    volumes:
+      - ./backend:/app
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:80"        # 容器内 nginx 监听 80，宿主机映射到 5173
+    depends_on:
+      - backend
+    restart: unless-stopped
