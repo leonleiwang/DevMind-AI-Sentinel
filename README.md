@@ -1,4 +1,4 @@
-# DevMind AI Sentinel – 基于多智能体协作的智能运维平台
+# DevMind AI Sentinel – 基于多智能体协作的智能运维平台 AI-powered Operations and Maintenance Platform Based on Multi-Agent Collaboration
 
 > **一句话概述**：面向云原生微服务环境的智能 Agent 运维助手，以自然语言交互、基于 LangChain + LangGraph 的多 Agent 协作和 MCP 标准协议，将故障定位时间从 20 分钟缩短至 3 分钟。
 
