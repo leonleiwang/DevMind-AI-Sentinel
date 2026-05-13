@@ -1,4 +1,4 @@
-# DevMind AI Sentinel – 基于多智能体协作的智能运维平台 AI-powered Operations and Maintenance Platform Based on Multi-Agent Collaboration
+# DevMind AI Sentinel – 基于多智能体协作的智能运维平台 | AI-powered Operations and Maintenance Platform Based on Multi-Agent Collaboration
 
 > **一句话概述**：面向云原生微服务环境的智能 Agent 运维助手，以自然语言交互、基于 LangChain + LangGraph 的多 Agent 协作和 MCP 标准协议，将故障定位时间从 20 分钟缩短至 3 分钟。
 
@@ -6,7 +6,18 @@
 ![Python](https://img.shields.io/badge/python-3.11-blue)
 ![Vue](https://img.shields.io/badge/vue-3.x-green)
 ![LangGraph](https://img.shields.io/badge/LangGraph-0.2+-orange)
+![LangChain](https://img.shields.io/badge/LangChain-0.3+-blue)
 ![MCP](https://img.shields.io/badge/MCP-Protocol-purple)
+![AI Agent](https://img.shields.io/badge/AI_Agent-Multi_Agent-blueviolet)
+![RAG](https://img.shields.io/badge/RAG-vector_search-green)
+![FastAPI](https://img.shields.io/badge/fastapi-0.100+-green)
+![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0-red)
+![Redis](https://img.shields.io/badge/redis-7-red)             
+![Docker](https://img.shields.io/badge/docker-compose-2496ED?logo=docker)
+![SSE](https://img.shields.io/badge/SSE-Streaming-yellowgreen)
+![Chroma](https://img.shields.io/badge/Chroma-vector_db-orange)
+![SQLite](https://img.shields.io/badge/SQLite-3-blue)
+
 
 ## 🧠 核心能力
 
@@ -15,13 +26,21 @@
 - **文档问答 Agent**：基于 RAG 技术搜索 Confluence 知识库，回答部署、故障 SOP、技术方案等问题  
 - **监控大盘**：实时展示 CPU、内存、请求延迟等核心指标，自动刷新  
 
+
 ## 👤 作者
 
-[王磊]: https://github.com/leonleiwang – 求职 AI Agent / LLM大模型开发工程师 - Shanghai/Hangzhou/Nanjing/Suzhou/Beijing, China，欢迎联系 [leonleiwang@outlook.com]
+**王磊（Leon Wang）**<br>
+"AI Agent & LLM Application Engineer focused on Agentic and multi-agent Systems, RAG, modern AI Infrastructure, Machine Learning, AI-native products with LLMs and Fullstack AI Products."<br>
+<br>
+求职 - AI Agent 应用开发 | LLM 大模型开发 | AI Infra | 全栈工程师<br>
+AI Agent Engineer | LLM Application Engineer | AI Infrastructure Engineer | Fullstack Developer<br>
+<br>
+📍 Based in Nanjing / Shanghai / Hangzhou / Suzhou, China<br>
+📍 Open to opportunities across Sydney / Melbourne / Brisbane / Adelaide, Australia & Auckland, New Zealand (Work visa holder)<br>
+<br>
+Email: leonleiwang@outlook.com<br>
+GitHub: https://github.com/leonleiwang
 
-## 📄 License
-
-MIT
 
 ---
 
@@ -166,3 +185,9 @@ docker-compose up -d --build
 - **移动端适配**：提供移动端 PWA 版本，方便运维人员随身处理告警  
 
 我会持续迭代，欢迎 Star ⭐ & Watch 关注项目进展！
+
+
+## 📄 License
+
+MIT
+
