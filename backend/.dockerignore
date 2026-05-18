@@ -1,0 +1,15 @@
+.env
+.env.*
+!.env.example
+__pycache__
+**/__pycache__
+*.pyc
+.pytest_cache
+.mypy_cache
+venv
+.venv
+*.db
+*.sqlite
+*.sqlite3
+chroma_db
+Dockerfile.*.bak

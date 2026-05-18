@@ -1,17 +1,35 @@
 # 环境配置（包含 API Key）
 .env
+**/.env
+.env.*
+**/.env.*
+!.env.example
+!**/.env.example
 
 # Python 缓存
 __pycache__/
+**/__pycache__/
 *.pyc
+.pytest_cache/
+.mypy_cache/
 
 # 数据库文件（SQLite）
 *.db
+*.sqlite
+*.sqlite3
 
 # Chroma 向量库缓存
 chroma_db/
+**/chroma_db/
+
+# Python 虚拟环境
+venv/
+.venv/
+backend/venv/
+backend/.venv/
 
 # IDE 配置
+.codex/
 .vscode/
 .idea/
 *.swp
@@ -25,9 +43,14 @@ Thumbs.db
 frontend/dist/
 frontend/node_modules/
 frontend/.vite/
+node_modules/
+dist/
 
 # 日志文件
 *.log
 
 # Docker 临时文件
 Dockerfile.*.bak
+
+# 本地垃圾文件
+本地测试和演示powershell命令.txt

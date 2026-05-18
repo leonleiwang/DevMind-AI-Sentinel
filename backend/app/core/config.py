@@ -12,7 +12,10 @@ class Settings(BaseSettings):
     ENVIRONMENT: str = "development"  # development, staging, production
 
     # 跨域 (CORS) 配置
-    BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = ["http://localhost:5173"]  # Vue 默认开发端口
+    BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ]
 
     @field_validator("BACKEND_CORS_ORIGINS", mode="before")
     @classmethod
@@ -79,6 +82,9 @@ class Settings(BaseSettings):
             "username": "your-email",
             "api_token": "your-api-token",
             # "enabled": False  # 初期先关闭
+            "enabled": True
+        },
+        "incident": {
             "enabled": True
         }
     }

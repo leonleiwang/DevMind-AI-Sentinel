@@ -5,6 +5,7 @@ from app.mcp.servers.prometheus_server import PrometheusMCPServer
 from app.mcp.servers.jira_server import JiraMCPServer
 from app.mcp.servers.gitlab_server import GitLabMCPServer
 from app.mcp.servers.confluence_server import ConfluenceMCPServer
+from app.mcp.servers.incident_server import IncidentMCPServer
 
 
 class MCPManager:
@@ -30,6 +31,8 @@ class MCPManager:
                 self.servers[name] = GitLabMCPServer(cfg)
             elif name == "confluence":
                 self.servers[name] = ConfluenceMCPServer(cfg)
+            elif name == "incident":
+                self.servers[name] = IncidentMCPServer(cfg)
             # 后续可扩展 gitlab、confluence 等
             # elif name == "gitlab":
             #     self.servers[name] = GitLabMCPServer(cfg)

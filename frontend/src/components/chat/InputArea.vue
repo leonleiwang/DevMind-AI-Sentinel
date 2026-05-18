@@ -3,18 +3,19 @@
   <div class="input-area">
     <el-input
       v-model="text"
-      placeholder="描述你的运维问题..."
+      class="prompt-input"
+      placeholder="描述故障现象、服务名、时间范围或想查询的运维知识..."
       @keyup.enter="send"
       :disabled="busy"
     />
-    <el-button type="primary" @click="send" :loading="busy">发送</el-button>
+    <el-button class="send-btn" type="primary" @click="send" :loading="busy">发送</el-button>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const props = defineProps<{ busy?: boolean }>();
+defineProps<{ busy?: boolean }>();
 const emit = defineEmits<{ send: [text: string] }>();
 
 const text = ref('');
@@ -28,8 +29,25 @@ function send() {
 
 <style scoped>
 .input-area {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 10px;
-  padding: 10px 0;
+  border: 1px solid var(--dm-border);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.88);
+  padding: 10px;
+  box-shadow: var(--dm-shadow-soft);
+}
+
+.send-btn {
+  min-width: 92px;
+  border-radius: 10px;
+  font-weight: 760;
+}
+
+@media (max-width: 640px) {
+  .input-area {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

@@ -6,6 +6,7 @@ import { useAuthStore } from '@/store/auth';
 import CodeReviewView from '@/views/CodeReviewView.vue';
 import DocQAView from '@/views/DocQAView.vue'
 import DashboardView from '@/views/DashboardView.vue';
+import IncidentAnalysisView from '@/views/IncidentAnalysisView.vue';
 
 
 const routes = [
@@ -16,6 +17,7 @@ const routes = [
     component: FaultDiagnosisView,
     meta: { requiresAuth: true },
   },
+  { path: '/incident-analysis', component: IncidentAnalysisView, meta: { requiresAuth: true } },
   { path: '/code-review', component: CodeReviewView, meta: { requiresAuth: true } },
   { path: '/doc-qa', component: DocQAView, meta: { requiresAuth: true } },
   { path: '/dashboard', component: DashboardView, meta: { requiresAuth: true } }

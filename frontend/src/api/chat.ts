@@ -15,6 +15,7 @@ export function connectChatStream(
   const authStore = useAuthStore();
   const token = authStore.token;
   if (!token) throw new Error('未登录');
+  let receivedFinal = false;
 
   const source = new SSE('http://127.0.0.1:8000/api/v1/chat/stream', {
     headers: {
@@ -42,11 +43,14 @@ export function connectChatStream(
   });
 
   source.addEventListener('final', (e: any) => {
+    receivedFinal = true;
     onMessage('final', JSON.parse(e.data));
     source.close();
   });
 
   source.onerror = (e: any) => {
+    if (receivedFinal) return;
+    console.error('Chat SSE error', e);
     if (onError) onError(e);
     source.close();
   };

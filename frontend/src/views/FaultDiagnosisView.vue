@@ -1,8 +1,57 @@
 <!-- src/views/FaultDiagnosisView.vue -->
 <template>
   <MainLayout>
-    <div class="page-container">
-      <h2>故障排查</h2>
+    <div class="dm-page">
+      <header class="dm-page-header">
+        <div>
+          <p class="dm-eyebrow">Fault Diagnosis</p>
+          <h1 class="dm-title">故障排查工作台</h1>
+          <p class="dm-subtitle">
+            通过自然语言触发 Supervisor Agent，串联指标、日志、告警和 MCP 工具调用，输出可解释的排查路径。
+          </p>
+        </div>
+        <div class="dm-chip-row">
+          <span class="dm-chip is-green">SSE streaming</span>
+          <span class="dm-chip is-blue">Tool trace</span>
+          <span class="dm-chip">Confidence gate</span>
+        </div>
+      </header>
+
+      <section class="dm-kpi-grid">
+        <article class="dm-card dm-kpi-card">
+          <div class="dm-kpi-label">Agent mode</div>
+          <div class="dm-kpi-value">RCA</div>
+          <div class="dm-kpi-caption">intent → action → evidence</div>
+        </article>
+        <article class="dm-card dm-kpi-card">
+          <div class="dm-kpi-label">Connected tools</div>
+          <div class="dm-kpi-value">5</div>
+          <div class="dm-kpi-caption">Prometheus / Jira / GitLab...</div>
+        </article>
+        <article class="dm-card dm-kpi-card">
+          <div class="dm-kpi-label">Clarification</div>
+          <div class="dm-kpi-value">0.7</div>
+          <div class="dm-kpi-caption">low confidence threshold</div>
+        </article>
+        <article class="dm-card dm-kpi-card">
+          <div class="dm-kpi-label">Output</div>
+          <div class="dm-kpi-value">Trace</div>
+          <div class="dm-kpi-caption">visible reasoning process</div>
+        </article>
+      </section>
+
+      <div class="quick-prompts">
+        <button @click="handleSend('订单服务今天下午 1 点开始延迟升高，请帮我定位可能原因')">
+          订单服务延迟升高
+        </button>
+        <button @click="handleSend('支付服务 5xx 错误率突然升高，先帮我确认影响范围')">
+          支付服务错误率升高
+        </button>
+        <button @click="handleSend('这个告警我看不懂，帮我判断需要先查什么')">
+          模糊告警澄清
+        </button>
+      </div>
+
       <div class="chat-wrapper">
         <ChatWindow :messages="chatStore.messages" />
         <InputArea @send="handleSend" />
@@ -69,21 +118,36 @@ async function handleSend(message: string) {
 </script>
 
 <style scoped>
-.page-container {
-  height: calc(100vh - 60px);
+.quick-prompts {
   display: flex;
-  flex-direction: column;
-  padding: 20px 20px 0;
+  flex-wrap: wrap;
+  gap: 10px;
 }
-.page-container h2 {
-  margin: 0 0 10px;
-  color: #303133;
+
+.quick-prompts button {
+  border: 1px solid var(--dm-border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--dm-ink-soft);
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: border 0.18s, background 0.18s, transform 0.18s;
 }
+
+.quick-prompts button:hover {
+  border-color: rgba(29, 78, 216, 0.28);
+  background: var(--dm-blue-soft);
+  color: var(--dm-blue);
+  transform: translateY(-1px);
+}
+
 .chat-wrapper {
   flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  margin-bottom: 50px;  /* 输入框与底部距离 */
+  gap: 12px;
 }
 </style>
